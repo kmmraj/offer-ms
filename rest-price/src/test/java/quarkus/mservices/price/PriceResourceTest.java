@@ -1,21 +1,28 @@
 package quarkus.mservices.price;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
+import javax.ws.rs.FormParam;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 public class PriceResourceTest {
 
     @Test
-    public void testHelloEndpoint() {
+    public void testGetPrices() {
+
         given()
-          .when().get("/api/prices")
-          .then()
-             .statusCode(200)
-             .body(is("Hello RESTEasy"));
+                .when()
+                .post("/api/prices")
+                .then()
+                .statusCode(201)
+                .contentType(ContentType.JSON);
     }
 
 }

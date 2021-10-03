@@ -50,6 +50,21 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy</artifactId>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-smallrye-fault-tolerance -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-fault-tolerance</artifactId>
+<!--      <version>2.3.0.Final</version>-->
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-rest-client -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client</artifactId>
+      <!--      <version>2.3.0.Final</version>-->
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.javamoney/moneta -->
     <dependency>
       <groupId>org.javamoney</groupId>
@@ -65,6 +80,10 @@
       <version>1.2.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -76,10 +95,7 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-    </dependency>
+
   </dependencies>
   <build>
     <plugins>

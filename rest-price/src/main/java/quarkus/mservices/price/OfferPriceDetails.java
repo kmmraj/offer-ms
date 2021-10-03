@@ -1,15 +1,13 @@
 package quarkus.mservices.price;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.javamoney.moneta.Money;
 
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.json.bind.annotation.JsonbProperty;
-import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public class OfferPrice {
+public class OfferPriceDetails {
     public String id;
     public String offerId;
     public BigDecimal price;
@@ -28,7 +26,6 @@ public class OfferPrice {
                 ", offerId='" + offerId + '\'' +
                 ", price=" + price +
                 ", creationDate=" + creationDate +
-                ", offer=" + offer +
                 '}';
     }
 }
