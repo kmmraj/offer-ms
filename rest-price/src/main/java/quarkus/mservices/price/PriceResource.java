@@ -1,6 +1,5 @@
 package quarkus.mservices.price;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -13,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.UUID;
 
 @Path("/api/prices")
 public class PriceResource {
@@ -35,7 +35,8 @@ public class PriceResource {
     public Response getOfferPrice(@FormParam("offer_id") String offerId) {
 
         OfferPrice offerPrice = new OfferPrice();
-        offerPrice.id = RandomStringUtils.random(5, true, true);
+//        offerPrice.id = RandomStringUtils.random(5, true, true);
+        offerPrice.id = UUID.randomUUID().toString().substring(0, 8);;
         Offer offerOne = offerProxy.getOffer().get(0);
         offerPrice.offerId = offerOne.id;
         offerPrice.offer = offerOne;
@@ -61,7 +62,8 @@ public class PriceResource {
 
     public Response fallBack_getOfferPrice(@FormParam("offer_id") String offerId) {
         OfferPrice offerPrice = new OfferPrice();
-        offerPrice.id = RandomStringUtils.random(5, true, true);
+//        offerPrice.id = RandomStringUtils.random(5, true, true);
+        offerPrice.id = UUID.randomUUID().toString().substring(0, 5);
         Offer offerOne = getTempOffer();
         offerPrice.offerId = offerOne.id;
         offerPrice.offer = offerOne;
