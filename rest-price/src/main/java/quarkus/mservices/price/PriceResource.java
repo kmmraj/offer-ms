@@ -1,5 +1,6 @@
 package quarkus.mservices.price;
 
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -32,11 +33,19 @@ public class PriceResource {
             description = "Price retrieval API")
     @Fallback(fallbackMethod = "fallBack_getOfferPrice")
     @Retry(maxRetries = 3, delay = 3000)
+    @CircuitBreaker(
+            requestVolumeThreshold = 5,
+            failureRatio = 0.3,
+            successThreshold = 3,
+            failOn =RuntimeException.class
+//            skipOn =
+    )
     public Response getOfferPrice(@FormParam("offer_id") String offerId) {
 
         OfferPrice offerPrice = new OfferPrice();
 //        offerPrice.id = RandomStringUtils.random(5, true, true);
-        offerPrice.id = UUID.randomUUID().toString().substring(0, 8);;
+        offerPrice.id = UUID.randomUUID().toString().substring(0, 8);
+        ;
         Offer offerOne = offerProxy.getOffer().get(0);
         offerPrice.offerId = offerOne.id;
         offerPrice.offer = offerOne;
@@ -54,9 +63,9 @@ public class PriceResource {
         Offer offerOne = new Offer();
         offerOne.cabinClass = CabinClassEnum.BUSINESS;
         offerOne.destination = "PAR";
-        offerOne.origin="AMS";
-        offerOne.flightId="TBD";
-        offerOne.id="TBD";
+        offerOne.origin = "AMS";
+        offerOne.flightId = "TBD";
+        offerOne.id = "TBD";
         return offerOne;
     }
 

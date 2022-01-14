@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Mock
 @RestClient
-public class MockOfferProxy implements OfferProxy{
+public class MockOfferProxy implements OfferProxy {
     @Override
     public List<Offer> getOffer() {
         Offer offerOne = new Offer();

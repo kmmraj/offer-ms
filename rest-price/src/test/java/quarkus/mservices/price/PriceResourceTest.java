@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-public class PriceResourceTest {
+class PriceResourceTest {
 
     @Test
-    public void testGetPrices() {
+    void testGetPrices() {
 
         given()
                 .when()

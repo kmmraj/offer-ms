@@ -9,10 +9,10 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.startsWith;
 
 @QuarkusTest
-public class OfferResourceTest {
+class OfferResourceTest {
 
     @Test
-    public void testOfferMSResponseType() {
+    void testOfferMSResponseType() {
         given()
                 .when()
                 .get("/api/offers")
@@ -22,7 +22,7 @@ public class OfferResourceTest {
     }
 
     @Test
-    public void testOfferMSResponseValue() {
+    void testOfferMSResponseValue() {
         given()
                 .when()
                 .get("/api/offers")

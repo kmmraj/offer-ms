@@ -1,5 +1,6 @@
 package quarkus.mservices.offer;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
@@ -23,6 +24,9 @@ public class OfferResource {
 
     @Inject
     Logger logger;
+    @ConfigProperty(name = "offer.default.travel.days",defaultValue = "30")
+    int defaultTravelDays;
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -39,7 +43,7 @@ public class OfferResource {
         offerOne.origin = "AMS";
 //        offerOne.flightId = RandomStringUtils.random(5, true, true);
         offerOne.flightId = UUID.randomUUID().toString().substring(0, 5);
-        offerOne.travelDate = Instant.now().plus(10, ChronoUnit.DAYS);
+        offerOne.travelDate = Instant.now().plus(defaultTravelDays, ChronoUnit.DAYS);
 
         logger.info(" Offer One is: " + offerOne);
         return Collections.singletonList(offerOne);
